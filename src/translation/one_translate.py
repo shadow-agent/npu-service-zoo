@@ -9,7 +9,6 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 # Global instances for environment and translation function
 _environment = None
 _translation_function = None
-_devices = []
 
 def initialize_translation_environment(llm_model: str = "default_model"):
     """
@@ -22,21 +21,18 @@ def initialize_translation_environment(llm_model: str = "default_model"):
         EnvironmentError: If no suitable environment is detected.
     """
     global _environment, _translation_function, _devices
-
+    _devices = []
     env_info = detect_environment()
     _environment = env_info["environment"]
-    _devices = env_info.get("devices", [])
+    _devices = env_info["devices"]
 
     if _environment == "gpu":
-        from translation.gpu import translate_with_gpu
-        _translation_function = monitor_power(
-            lambda text, src, tgt: translate_with_gpu(text, src, tgt, llm_model=llm_model),
-            devices=_devices
-        )
+        from .gpu import translate_with_gpu
+        _translation_function = monitor_power(lambda text, src, tgt: translate_with_gpu(text, src, tgt, llm_model=llm_model))
         logging.info("Translation environment detected: GPU. Using GPU for translations.")
     elif _environment == "furiosa":
-        from translation.furiosa import translate_with_furiosa
-        _translation_function = monitor_power(translate_with_furiosa, devices=_devices)
+        from .furiosa import translate_with_furiosa
+        _translation_function = monitor_power(translate_with_furiosa)
         logging.info("Translation environment detected: Furiosa NPU. Using NPU for translations.")
     else:
         error_message = (
