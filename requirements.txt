@@ -1,0 +1,51 @@
+# Formatting & Code Quality
+black
+flake8
+isort
+
+# Logging
+loguru
+
+# Documentation
+mkdocs
+
+# Utilities
+pip
+tqdm
+typer
+python-dotenv
+
+# APP Framework
+streamlit
+
+# LLM Libraries
+chroma
+llama-index
+llama-index-embeddings-huggingface
+llama-index-llms-ollama
+PyStemmer
+
+# Web Scraping & Text Parsing
+beautifulsoup4
+markdownify
+
+# LangChain Framework & Integrations
+langchain
+langchain_openai
+langchain_huggingface
+langchain-ollama
+langchain-chroma>=0.1.2
+rank_bm25
+
+# Llama Index Extensions
+llama-index-retrievers-bm25
+llama-index-vector-stores-chroma
+
+# Language Tokenizers
+konlpy
+janome
+janomecabdic
+
+# Datasets & Evaluation
+datasets
+bert-score
