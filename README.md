@@ -17,10 +17,15 @@ The project is organized as follows:
 ├── README.md            # Project overview and instructions
 ├── configuration/       # Collection of available configurations for tasks
 ├── data/
-│   ├── translate/       # Translation benchmarking dataset
+│   ├── translation/     # Translation benchmarking dataset
 │   ├── chatbot/         # QA chatbot (RAG) benchmarking dataset
 │   ├── summary/         # Document summarization benchmarking dataset
 │   └── multimodal/      # Multimodal (vision+text) benchmarking dataset
+├── results/             # Benchmark scores and ** Leaderboards **
+│   ├── translation/       
+│   ├── chatbot/         
+│   ├── summary/         
+│   └── multimodal/      
 ├── requirements.txt     # List of required Python packages
 └── src/                 # Source code for various tasks
     ├── environment/     # Environment detection, configuration loader
