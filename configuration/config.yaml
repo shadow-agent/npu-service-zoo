@@ -5,7 +5,7 @@ device:
   count: 1
 
 model:
-  name: llama3.1:70b
+  name: mixtral:latest
   quantization: Q4_K_M
   calibration: base
 
