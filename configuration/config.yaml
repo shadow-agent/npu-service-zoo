@@ -5,7 +5,7 @@ device:
   count: 1
 
 model:
-  name: llama3.1
+  name: llama3.1:70b
   quantization: Q4_K_M
   calibration: base
 
@@ -18,4 +18,4 @@ evaluation:
     tps: true
     power_consumption: false
     memory_usage: false
-  output_dir: ../result/translation
+  output_dir: ./results/translation
