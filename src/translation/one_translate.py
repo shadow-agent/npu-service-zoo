@@ -1,7 +1,7 @@
 import logging
 from time import time
-from common.environment import detect_environment
-from common.monitoring import monitor_power
+from ..common.environment import detect_environment
+from ..common.monitoring import monitor_power
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")

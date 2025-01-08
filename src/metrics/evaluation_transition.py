@@ -1,4 +1,4 @@
-from metrics.quality_metrics import calculate_bleu_meteor_score, calculate_bert_score
+from ..metrics.quality_metrics import calculate_bleu_meteor_score, calculate_bert_score
 from time import time
 
 def evaluate_translation(result: str, ref_text: str, tgt_lang, elapsed_time: float, active_metrics: list):

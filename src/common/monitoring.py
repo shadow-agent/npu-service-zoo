@@ -3,7 +3,7 @@ import os
 import threading
 from time import time, sleep
 from functools import wraps
-from metrics.performance_metrics import calculate_power_consumption
+from ..metrics.performance_metrics import calculate_power_consumption
 
 def monitor_power(func):
     """
