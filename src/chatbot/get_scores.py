@@ -1,8 +1,8 @@
 
-from evaluation_utils import quac_correct_retrieved_instance_idx_list
-from evaluation_utils import unanswerable_keyphrases
+from src.chatbot.evaluation_utils import quac_correct_retrieved_instance_idx_list
+from src.chatbot.evaluation_utils import unanswerable_keyphrases
 import json
-from metrics import F1Metric
+from src.chatbot.metrics import F1Metric
 import copy
 import re
 
@@ -30,6 +30,7 @@ def compute_f1_score(predicted_answers, groundtruth_answer, exp_name="default"):
     precision, recall, f1 = F1Metric.compute_all_pairs(guess_list, answer_list)
     print('Method: %s; Precision: %.4f; recall: %.4f; f1: %.4f' % (\
         exp_name, precision, recall, f1))
+    return precision, recall, f1
 
 
 def load_groundtruth_file(data_file):
@@ -66,9 +67,10 @@ def load_prediction(data_file):
 
 
 def evaluate_f1(ground_truth_file, prediction_file):
-
+    predicted_answers = load_prediction(prediction_file)
+    len_valid = len(predicted_answers)
     groundtruth_answers = load_groundtruth_file(ground_truth_file)
-    if "inscit" in ground_truth_file:
+    if "inscit" in ground_truth_file[:len_valid]:
         groundtruth_answers_update = []
         for answers in groundtruth_answers:
             answers_update = []
@@ -80,7 +82,6 @@ def evaluate_f1(ground_truth_file, prediction_file):
             groundtruth_answers_update.append(copy.deepcopy(answers_update))
         groundtruth_answers = groundtruth_answers_update
 
-    predicted_answers = load_prediction(prediction_file)
     if "quac" in prediction_file or "doqa" in prediction_file:
         predicted_answers_new = []
         for pred in predicted_answers:
@@ -92,7 +93,8 @@ def evaluate_f1(ground_truth_file, prediction_file):
             predicted_answers_new.append(pred)
         predicted_answers = predicted_answers_new
 
-    compute_f1_score(predicted_answers, groundtruth_answers)
+    precision, recall, f1 = compute_f1_score(predicted_answers, groundtruth_answers)
+    return precision, recall, f1
 
 
 def separate_cannot_answer(ground_truth_file, prediction_file):
