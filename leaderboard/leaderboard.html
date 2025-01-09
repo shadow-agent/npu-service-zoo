@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Leaderboard</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #B0B0B0;
+            margin: 0;
+        }
+        .logo {
+            height: 50px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #B0B0B0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #323232;
+            color: #FFFFFF;
+            padding: 10px;
+            text-align: center;
+        }
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #2C2C2C;
+        }
+        tr:hover {
+            background-color: #424242;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Service Leaderboard</h1>
+        <img src="ac6c6784959948e1aa377e8b01cfed51.webp" alt="Furiosa Logo" class="logo">
+    </div>
+    
+    <section>
+        <h2>KO→EN Translation</h2>
+        <table id="leaderboard-0" class="display">
+            <thead>
+                <tr><th>device-type</th><th>device-name</th><th>llm</th><th>quantization</th><th>calibration</th><th>BLEU</th><th>METEOR</th><th>BERTScore</th><th>tps</th></tr>
+            </thead>
+            <tbody><tr><td>GPU</td><td>A5000</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.206</td><td>0.56</td><td>0.849</td><td>52.092</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.3:70b</td><td>Q4_K_M</td><td>base</td><td>0.263</td><td>0.626</td><td>0.88</td><td>10.144</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.255</td><td>0.607</td><td>0.874</td><td>10.861</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2:72b</td><td>Q4_K_M</td><td>base</td><td>0.242</td><td>0.609</td><td>0.872</td><td>10.257</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:latest</td><td>Q4_K_M</td><td>base</td><td>0.201</td><td>0.556</td><td>0.847</td><td>81.697</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.25</td><td>0.604</td><td>0.874</td><td>18.986</td></tr><tr><td>GPU</td><td>A100</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.272</td><td>0.629</td><td>0.879</td><td>15.05</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.267</td><td>0.626</td><td>0.88</td><td>8.982</td></tr><tr><td>NPU</td><td>RNGD</td><td>llama3.1</td><td>W8A8</td><td>base</td><td>0.206</td><td>0.567</td><td>0.849</td><td>16.207</td></tr></tbody>
+        </table>
+    </section>
+    
+    <section>
+        <h2>EN→KO Translation</h2>
+        <table id="leaderboard-1" class="display">
+            <thead>
+                <tr><th>device-type</th><th>device-name</th><th>llm</th><th>quantization</th><th>calibration</th><th>BLEU</th><th>METEOR</th><th>BERTScore</th><th>tps</th></tr>
+            </thead>
+            <tbody><tr><td>GPU</td><td>A5000</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.189</td><td>0.477</td><td>0.823</td><td>54.236</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.3:70b</td><td>Q4_K_M</td><td>base</td><td>0.267</td><td>0.559</td><td>0.847</td><td>9.877</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.252</td><td>0.552</td><td>0.839</td><td>10.613</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2:72b</td><td>Q4_K_M</td><td>base</td><td>0.229</td><td>0.53</td><td>0.827</td><td>9.149</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:latest</td><td>Q4_K_M</td><td>base</td><td>0.193</td><td>0.487</td><td>0.824</td><td>85.079</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.247</td><td>0.548</td><td>0.837</td><td>18.894</td></tr><tr><td>GPU</td><td>A100</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.242</td><td>0.537</td><td>0.839</td><td>13.603</td></tr><tr><td>NPU</td><td>RNGD</td><td>llama3.1</td><td>W8A8</td><td>base</td><td>0.097</td><td>0.332</td><td>0.747</td><td>14.684</td></tr></tbody>
+        </table>
+    </section>
+    
+
+    <!-- DataTables Script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTables for all tables
+            $("#leaderboard-0").DataTable({ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[7, "desc"]] });$("#leaderboard-1").DataTable({ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[7, "desc"]] });
+        });
+    </script>
+</body>
+</html>
