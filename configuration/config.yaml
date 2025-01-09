@@ -4,7 +4,7 @@ device:
   count: 1
 
 model:
-  name: llama3.3:70b 
+  name: llama3.1
   quantization: Q4_K_M
   calibration: base
 
