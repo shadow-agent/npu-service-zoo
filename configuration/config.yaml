@@ -14,7 +14,7 @@ evaluation:
     precision: true
     recall: true
     f1: true
-    tps: false
+    tps: true
     power_consumption: false
     memory_usage: false
   output_dir: ./results/chatbot
