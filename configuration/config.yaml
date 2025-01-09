@@ -1,12 +1,11 @@
-# config.yaml
 device:
-  type: GPU
-  model: A5000
+  type: NPU
+  model: RNGD
   count: 1
 
 model:
-  name: mixtral:latest
-  quantization: Q4_K_M
+  name: llama3.1-8B-Instruct
+  quantization: W8A8
   calibration: base
 
 evaluation:
