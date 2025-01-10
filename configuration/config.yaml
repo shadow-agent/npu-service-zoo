@@ -1,20 +1,20 @@
 device:
-  type: NPU
-  model: RNGD
+  type: GPU
+  model: A5000
   count: 1
 
 model:
-  name: llama3.1-8B-Instruct
-  quantization: W8A8
+  name: llama3.1
+  quantization: Q4_K_M
   calibration: base
 
 evaluation:
-  task: translation
+  task: chatbot
   metrics:
-    BLEU: true
-    METEOR: true
-    BERTScore: true
+    precision: true
+    recall: true
+    f1: true
     tps: true
     power_consumption: false
     memory_usage: false
-  output_dir: ./results/translation
+  output_dir: ./results/chatbot
