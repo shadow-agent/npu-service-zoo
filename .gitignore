@@ -5,3 +5,5 @@ src/models/
 .env
 
 .DS_Store
+
+data/multimodal
