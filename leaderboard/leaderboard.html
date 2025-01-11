@@ -80,6 +80,9 @@
         .logo {
             height: 50px;
         }
+        .highlight-row {
+            background-color: #333300 !important; /* 검은색 90%, 노란색 10% */
+        }
     </style>
 </head>
 <body>
@@ -124,7 +127,7 @@
             <thead>
                 <tr><th>device-type</th><th>device-name</th><th>llm</th><th>quantization</th><th>calibration</th><th>BLEU</th><th>METEOR</th><th>BERTScore</th><th>tps</th></tr>
             </thead>
-            <tbody><tr><td>GPU</td><td>A5000</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.206</td><td>0.56</td><td>0.849</td><td>52.092</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.3:70b</td><td>Q4_K_M</td><td>base</td><td>0.263</td><td>0.626</td><td>0.88</td><td>10.144</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.255</td><td>0.607</td><td>0.874</td><td>10.861</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2:72b</td><td>Q4_K_M</td><td>base</td><td>0.242</td><td>0.609</td><td>0.872</td><td>10.257</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:latest</td><td>Q4_K_M</td><td>base</td><td>0.201</td><td>0.556</td><td>0.847</td><td>81.697</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.25</td><td>0.604</td><td>0.874</td><td>18.986</td></tr><tr><td>GPU</td><td>A100</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.272</td><td>0.629</td><td>0.879</td><td>15.05</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.267</td><td>0.626</td><td>0.88</td><td>8.982</td></tr><tr><td>NPU</td><td>RNGD</td><td>llama3.1</td><td>W8A8</td><td>base</td><td>0.206</td><td>0.567</td><td>0.849</td><td>16.207</td></tr></tbody>
+            <tbody><tr><td>GPU</td><td>A5000</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.206</td><td>0.56</td><td>0.849</td><td>52.092</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.3:70b</td><td>Q4_K_M</td><td>base</td><td>0.263</td><td>0.626</td><td>0.88</td><td>10.144</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.255</td><td>0.607</td><td>0.874</td><td>10.861</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2:72b</td><td>Q4_K_M</td><td>base</td><td>0.242</td><td>0.609</td><td>0.872</td><td>10.257</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:latest</td><td>Q4_K_M</td><td>base</td><td>0.201</td><td>0.556</td><td>0.847</td><td>81.697</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.25</td><td>0.604</td><td>0.874</td><td>18.986</td></tr><tr><td>GPU</td><td>A100</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.272</td><td>0.629</td><td>0.879</td><td>15.05</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.267</td><td>0.626</td><td>0.88</td><td>8.982</td></tr><tr class='highlight-row'><td>NPU</td><td>RNGD</td><td>llama3.1</td><td>W8A8</td><td>base</td><td>0.206</td><td>0.567</td><td>0.849</td><td>16.207</td></tr></tbody>
         </table>
     </section>
     
@@ -134,7 +137,17 @@
             <thead>
                 <tr><th>device-type</th><th>device-name</th><th>llm</th><th>quantization</th><th>calibration</th><th>BLEU</th><th>METEOR</th><th>BERTScore</th><th>tps</th></tr>
             </thead>
-            <tbody><tr><td>GPU</td><td>A5000</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.189</td><td>0.477</td><td>0.823</td><td>54.236</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.3:70b</td><td>Q4_K_M</td><td>base</td><td>0.267</td><td>0.559</td><td>0.847</td><td>9.877</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.252</td><td>0.552</td><td>0.839</td><td>10.613</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2:72b</td><td>Q4_K_M</td><td>base</td><td>0.229</td><td>0.53</td><td>0.827</td><td>9.149</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:latest</td><td>Q4_K_M</td><td>base</td><td>0.193</td><td>0.487</td><td>0.824</td><td>85.079</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.247</td><td>0.548</td><td>0.837</td><td>18.894</td></tr><tr><td>GPU</td><td>A100</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.242</td><td>0.537</td><td>0.839</td><td>13.603</td></tr><tr><td>NPU</td><td>RNGD</td><td>llama3.1</td><td>W8A8</td><td>base</td><td>0.097</td><td>0.332</td><td>0.747</td><td>14.684</td></tr></tbody>
+            <tbody><tr><td>GPU</td><td>A5000</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.189</td><td>0.477</td><td>0.823</td><td>54.236</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.3:70b</td><td>Q4_K_M</td><td>base</td><td>0.267</td><td>0.559</td><td>0.847</td><td>9.877</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.252</td><td>0.552</td><td>0.839</td><td>10.613</td></tr><tr><td>GPU</td><td>A5000</td><td>qwen2:72b</td><td>Q4_K_M</td><td>base</td><td>0.229</td><td>0.53</td><td>0.827</td><td>9.149</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:latest</td><td>Q4_K_M</td><td>base</td><td>0.193</td><td>0.487</td><td>0.824</td><td>85.079</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.247</td><td>0.548</td><td>0.837</td><td>18.894</td></tr><tr><td>GPU</td><td>A100</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.242</td><td>0.537</td><td>0.839</td><td>13.603</td></tr><tr class='highlight-row'><td>NPU</td><td>RNGD</td><td>llama3.1</td><td>W8A8</td><td>base</td><td>0.097</td><td>0.332</td><td>0.747</td><td>14.684</td></tr></tbody>
+        </table>
+    </section>
+    
+    <section>
+        <h2>NVIDIA-ChatRAG bench</h2>
+        <table id="leaderboard-2" class="display">
+            <thead>
+                <tr><th>device-type</th><th>device-name</th><th>llm</th><th>quantization</th><th>calibration</th><th>precision</th><th>recall</th><th>f1</th><th>tps</th></tr>
+            </thead>
+            <tbody><tr><td>GPU</td><td>A5000</td><td>llama3.3:70b</td><td>Q4_K_M</td><td>base</td><td>0.604</td><td>0.741</td><td>0.717</td><td>701.35</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.631</td><td>0.765</td><td>0.748</td><td>1036.459</td></tr><tr><td>GPU</td><td>A100</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.639</td><td>0.74</td><td>0.747</td><td>3646.297</td></tr><tr><td>GPU</td><td>A100</td><td>qwen2.5:72b</td><td>Q4_K_M</td><td>base</td><td>0.585</td><td>0.799</td><td>0.723</td><td>784.726</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1:70b</td><td>Q4_K_M</td><td>base</td><td>0.631</td><td>0.766</td><td>0.748</td><td>713.874</td></tr><tr><td>GPU</td><td>A5000</td><td>llama3.1</td><td>Q4_K_M</td><td>base</td><td>0.639</td><td>0.74</td><td>0.748</td><td>2150.251</td></tr><tr><td>NPU</td><td>RNGD</td><td>llama3.1</td><td>W8A8</td><td>base</td><td>0.7</td><td>0.734</td><td>0.793</td><td>1649.415</td></tr></tbody>
         </table>
     </section>
     
@@ -143,17 +156,14 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Initialize DataTables for all tables with BERTScore sorting
             const tables = [];
-            tables.push($("#leaderboard-0").DataTable({ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[5, "desc"]] }));tables.push($("#leaderboard-1").DataTable({ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[5, "desc"]] }));
+            tables.push($("#leaderboard-0").DataTable({ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[5, "desc"]] }));tables.push($("#leaderboard-1").DataTable({ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[5, "desc"]] }));tables.push($("#leaderboard-2").DataTable({ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[5, "desc"]] }));
 
-            // Toggle filter visibility
             $("#toggle-filters").on("click", function() {
                 $(".filters").toggleClass("show");
                 $(this).text($(".filters").hasClass("show") ? "Hide Filters" : "Show Filters");
             });
 
-            // Apply filters
             $("#apply-filters").on("click", function() {
                 const filters = {};
                 $(".filter-group").each(function() {
@@ -174,7 +184,6 @@
                 });
             });
 
-            // Clear filters
             $("#clear-filters").on("click", function() {
                 $("input[type=checkbox]").prop("checked", false);
                 tables.forEach((table) => {

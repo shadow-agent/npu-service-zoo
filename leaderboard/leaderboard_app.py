@@ -4,40 +4,44 @@ import pandas as pd
 file_paths = [
     "../results/translation/Korean2English/leaderboard.csv",
     "../results/translation/English2Korean/leaderboard.csv",
+    "../results/chatbot/coqa/leaderboard.csv",
 ]
 
 # 과제 이름 설정
-task_names = ["KO→EN Translation", "EN→KO Translation"]
+task_names = ["KO→EN Translation", "EN→KO Translation", "NVIDIA-ChatRAG bench"]
 
-# 필터링 옵션 생성 함수
-def generate_filter_checkboxes(data, column_name):
-    unique_values = data[column_name].dropna().unique()
-    checkboxes = "".join(
-        f'<label><input type="checkbox" class="{column_name}" value="{value}"> {value}</label>'
-        for value in sorted(unique_values)
-    )
-    return checkboxes
+def highlight_best_npu(data):
+    if "device-type" in data.columns and "BERTScore" in data.columns:
+        npu_data = data[data["device-type"] == "NPU"]
+        if not npu_data.empty:
+            best_row_idx = npu_data["BERTScore"].idxmax()
+            data["highlight"] = False
+            data.loc[best_row_idx, "highlight"] = True
+        else:
+            data["highlight"] = False
+    else:
+        data["highlight"] = False
+    return data
 
 # 전체 테이블 컨텐츠와 필터 옵션 생성
 tables_content = ""
 filters_content = {"device-type": set(), "device-name": set(), "llm": set(), "quantization": set()}
 
 for i, (file_path, task_name) in enumerate(zip(file_paths, task_names)):
-    # CSV 데이터 로드 및 소수점 세 자리 반올림
     data = pd.read_csv(file_path).round(3)
+    data = highlight_best_npu(data)
 
-    # 각 컬럼의 필터 옵션 수집
     for col in filters_content.keys():
         filters_content[col].update(data[col].dropna().unique())
 
-    # 테이블 헤더와 행 생성
-    headers = "".join(f"<th>{col}</th>" for col in data.columns)
+    headers = "".join(f"<th>{col}</th>" for col in data.columns if col != "highlight")
     rows = "".join(
-        "<tr>" + "".join(f"<td>{value}</td>" for value in row) + "</tr>"
+        f"<tr class='highlight-row'>" + "".join(f"<td>{value}</td>" for value in row[:-1]) + "</tr>"
+        if row[-1] else
+        f"<tr>" + "".join(f"<td>{value}</td>" for value in row[:-1]) + "</tr>"
         for row in data.values
     )
 
-    # 테이블 섹션 추가
     tables_content += f"""
     <section>
         <h2>{task_name}</h2>
@@ -50,10 +54,12 @@ for i, (file_path, task_name) in enumerate(zip(file_paths, task_names)):
     </section>
     """
 
-# 필터 섹션 HTML 생성
 filter_checkboxes_html = ""
 for filter_name, options in filters_content.items():
-    checkboxes_html = generate_filter_checkboxes(pd.DataFrame({filter_name: list(options)}), filter_name)
+    checkboxes_html = "".join(
+        f'<label><input type="checkbox" class="{filter_name}" value="{value}"> {value}</label>'
+        for value in sorted(options)
+    )
     filter_checkboxes_html += f"""
     <div class="filter-group">
         <h3>{filter_name.replace('-', ' ').capitalize()}</h3>
@@ -61,7 +67,6 @@ for filter_name, options in filters_content.items():
     </div>
     """
 
-# HTML 파일 생성
 html_content = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -144,6 +149,9 @@ html_content = f"""
         .logo {{
             height: 50px;
         }}
+        .highlight-row {{
+            background-color: #333300 !important; /* 검은색 90%, 노란색 10% */
+        }}
     </style>
 </head>
 <body>
@@ -167,17 +175,14 @@ html_content = f"""
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {{
-            // Initialize DataTables for all tables with BERTScore sorting
             const tables = [];
             {''.join([f'tables.push($("#leaderboard-{i}").DataTable({{ "paging": true, "pageLength": 10, "info": false, "lengthChange": false, "searching": false, "order": [[5, "desc"]] }}));' for i in range(len(file_paths))])}
 
-            // Toggle filter visibility
             $("#toggle-filters").on("click", function() {{
                 $(".filters").toggleClass("show");
                 $(this).text($(".filters").hasClass("show") ? "Hide Filters" : "Show Filters");
             }});
 
-            // Apply filters
             $("#apply-filters").on("click", function() {{
                 const filters = {{}};
                 $(".filter-group").each(function() {{
@@ -198,7 +203,6 @@ html_content = f"""
                 }});
             }});
 
-            // Clear filters
             $("#clear-filters").on("click", function() {{
                 $("input[type=checkbox]").prop("checked", false);
                 tables.forEach((table) => {{
@@ -213,6 +217,5 @@ html_content = f"""
 </html>
 """
 
-# HTML 파일 저장
 with open("leaderboard.html", "w", encoding="utf-8") as file:
     file.write(html_content)
